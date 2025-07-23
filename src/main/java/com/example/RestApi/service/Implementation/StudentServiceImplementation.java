@@ -70,14 +70,15 @@ public class StudentServiceImplementation implements StudentService {
             switch (field){
                 case "name":
                     student.setName((String) value);
+                    break;
                 case "email":
                     student.setEmail((String) value);
+                    break;
                 default:
                     throw new IllegalArgumentException("field does not exist!");
             }
         });
         Student saveStudent = studentRepository.save(student);
-
         return modelMapper.map(saveStudent,StudentDTO.class);
     }
 }

@@ -4,6 +4,7 @@ package com.example.RestApi.controller;
 import com.example.RestApi.dto.AddStudentRequestDTO;
 import com.example.RestApi.dto.StudentDTO;
 import com.example.RestApi.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -31,7 +32,7 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<StudentDTO> createNewStudent(@RequestBody AddStudentRequestDTO addStudentRequestDTO){
+    public ResponseEntity<StudentDTO> createNewStudent(@RequestBody @Valid AddStudentRequestDTO addStudentRequestDTO){
         return  ResponseEntity.status(HttpStatus.CREATED).body(studentService.createNewStudent(addStudentRequestDTO));
     }
 
@@ -42,12 +43,12 @@ public class StudentController {
     }
 
     @PutMapping("/students/{id}")
-    public ResponseEntity<StudentDTO> updateStudent(@PathVariable Long id ,@RequestBody AddStudentRequestDTO addStudentRequestDTO){
+    public ResponseEntity<StudentDTO> updateStudent(@PathVariable Long id ,@RequestBody @Valid AddStudentRequestDTO addStudentRequestDTO){
         return ResponseEntity.status(HttpStatus.OK).body(studentService.updateStudent(id,addStudentRequestDTO));
     }
 
     @PatchMapping("/students/{id}")
-    public ResponseEntity<StudentDTO> updatePartialStudent(@PathVariable Long id ,@RequestBody Map<String,Object> updates){
+    public ResponseEntity<StudentDTO> updatePartialStudent(@PathVariable Long id ,@RequestBody @Valid Map<String,Object> updates){
         return ResponseEntity.status(HttpStatus.OK).body(studentService.updatePartialStudent(id,updates));
     }
 
