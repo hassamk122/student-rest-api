@@ -1,4 +1,3 @@
-Dependencies:
 
 spring-boot-starter-validation 
 used for : @NotNull, @Size, @Email, etc.
